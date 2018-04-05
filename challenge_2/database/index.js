@@ -19,12 +19,12 @@ var userSchema = mongoose.Schema({
   line2: String,
   city: String,
   state: String,
-  zip: Number,
-  phone: Number,
-  card: Number,
+  zip: String,
+  phone: String,
+  card: String,
   exp: String,
-  cvv: Number,
-  billing: Number
+  cvv: String,
+  billing: String
 });
 
 var UserModel = mongoose.model('UserModel', userSchema);
@@ -32,13 +32,25 @@ var UserModel = mongoose.model('UserModel', userSchema);
 let methods = {
     save: (obj) => {
       let userDocument = new UserModel({
-        quantity: obj.quantity,
-        description: obj.description
+        email: obj.userInfo.email,
+        name: obj.userInfo.name,
+        password: obj.userInfo.password,
+        line1: obj.shippingInfo.line1,
+        line2: obj.shippingInfo.line2,
+        city: obj.shippingInfo.city,
+        state: obj.shippingInfo.state,
+        zip: obj.shippingInfo.zip,
+        phone: obj.shippingInfo.phone,
+        card: obj.creditInfo.card,
+        exp: obj.creditInfo.exp,
+        cvv: obj.creditInfo.cvv,
+        billing: obj.creditInfo.billing
       })
       userDocument.save(function (err) {
         if (err) return console.error(err);
       });
     },
+    
     find: (callback) => {
       UserModel.find(callback);
     },

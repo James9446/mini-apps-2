@@ -71,6 +71,7 @@ class UserInfo extends React.Component {
         
         {/* <input type="submit" value="Next" /> */}
       </form>
+      <button onClick={this.props.back}> Back </button>
       <button onClick={this.passUpUserInfo.bind(this)}>NEXT</button>
       </div>
     );
